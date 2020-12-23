@@ -35,4 +35,17 @@ public class TestJunit {
 		
 	    Assertions.assertEquals("..*..\n..*.*\n.....\n.*...\n....*\n", b1.toString());
 	}
+	
+	@Test
+	public void testBoardThree() {
+		Board b2 = new Board(3,3);
+		System.out.println("======TEST FIVE EXECUTED=======");
+		int l[][] = { {1,2}, {0,2}, {2,1} };
+		b2.createBoard(l);
+		Assertions.assertEquals("..*\n..*\n.*.\n", b2.toString());
+		
+		Assertions.assertEquals(1,b2.getAliveNeighbours(b2.grid[0][2]));
+		Assertions.assertEquals(3,b2.getAliveNeighbours(b2.grid[1][1]));
+		Assertions.assertEquals(0,b2.getAliveNeighbours(b2.grid[0][0]));
+	}
 }

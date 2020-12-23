@@ -3,12 +3,18 @@ import java.math.*;
 public class Board {
 	public int rows;
 	public int columns;
-	public int[][] grid;
+	public Cell[][] grid;
 	
 	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		this.grid = new int[rows][columns];
+		this.grid = new Cell[rows][columns];
+		for(int i=0; i<this.rows; i++) {
+			for(int j=0; j<this.columns; j++) {
+				Cell c = new Cell(i, j, false);
+				this.grid[i][j] = c;
+			}
+		}
 	}
 	
 	public int getAliveNeighbours(Cell c) {
@@ -18,8 +24,8 @@ public class Board {
             int column_limit = this.columns-1;
             for(int i = Math.max(0, c.x-1); i <= Math.min(c.x+1, row_limit); i++){
                 for(int j = Math.max(0, c.y-1); j <= Math.min(c.y+1, column_limit); j++){
-                    if(i != c.x || j != c.y){
-                        count += this.grid[i][j];
+                    if((i != c.x || j != c.y) && this.grid[i][j].isAlive){
+                        count++;
                     }
                 }
             }
@@ -29,7 +35,7 @@ public class Board {
 	
 	public void createBoard(int l[][]) {
 		for(int i=0; i<l.length; i++){
-            this.grid[l[i][0]][l[i][1]] = 1;
+            this.grid[l[i][0]][l[i][1]].isAlive = true;
         }
 	}
 	
@@ -38,18 +44,12 @@ public class Board {
 		for(int i=0; i<this.rows; i++){
             int col = this.columns;
             for(int j=0; j<col; j++){
-                if(this.grid[i][j]==0){
-                    // System.out.print(".");
+                if(this.grid[i][j].isAlive==false){
                     res += ".";
                 }else{
-                    // System.out.print("*");
                     res += "*";
                 }
-                // if(j!=col-1){
-                //     System.out.print(" ");
-                // }
             }
-            // System.out.println();
             res += "\n";
         }
 		return res;
