@@ -24,6 +24,7 @@ public class Board {
             int column_limit = this.columns-1;
             for(int i = Math.max(0, c.x-1); i <= Math.min(c.x+1, row_limit); i++){
                 for(int j = Math.max(0, c.y-1); j <= Math.min(c.y+1, column_limit); j++){
+                	// System.out.println(i + " " + j);
                     if((i != c.x || j != c.y) && this.grid[i][j].isAlive){
                         count++;
                     }
@@ -31,6 +32,9 @@ public class Board {
             }
         }
         return count;
+        
+        //3 x 3... 2, 2
+        // (2,3).....(1,2),(1,3),(1,4)...(2,2),(2,3),(2,4)...(3,2),(3,3),(3,4)
 	}
 	
 	public void createBoard(int l[][]) {

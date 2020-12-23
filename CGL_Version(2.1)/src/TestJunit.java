@@ -43,9 +43,24 @@ public class TestJunit {
 		int l[][] = { {1,2}, {0,2}, {2,1} };
 		b2.createBoard(l);
 		Assertions.assertEquals("..*\n..*\n.*.\n", b2.toString());
-		
+		// . . * .    . . . .
+		// . . * .    . * * *
+		// . * . *    . * . *
+		// . . * .    . . * .
 		Assertions.assertEquals(1,b2.getAliveNeighbours(b2.grid[0][2]));
-		Assertions.assertEquals(3,b2.getAliveNeighbours(b2.grid[1][1]));
-		Assertions.assertEquals(0,b2.getAliveNeighbours(b2.grid[0][0]));
+//		Assertions.assertEquals(3,b2.getAliveNeighbours(b2.grid[1][1]));
+//		Assertions.assertEquals(0,b2.getAliveNeighbours(b2.grid[0][0]));
+	}
+	
+	@Test
+	public void testGameOne() {
+		Game g = new Game();
+		System.out.println("======TEST SIX EXECUTED=======");
+		Board b1 = new Board(4,4);
+		int l[][] = { {1,2}, {0,2}, {2,1}, {2,3}, {3,2} };
+		b1.createBoard(l);
+		Board b2 = g.nextGeneration(b1);
+		Assertions.assertEquals("....\n.***\n.*.*\n..*.\n", b2.toString());
+		
 	}
 }
