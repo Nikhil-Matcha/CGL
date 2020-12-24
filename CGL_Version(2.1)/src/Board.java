@@ -43,6 +43,24 @@ public class Board {
         }
 	}
 	
+	public void nextGeneration() {
+		Board newBoard = new Board(this.rows, this.columns);
+		for(int i=0; i<this.rows; i++) {
+			for(int j=0; j<this.columns; j++) {
+				if(this.grid[i][j].isAlive) {
+					if(this.getAliveNeighbours(this.grid[i][j])==2 || this.getAliveNeighbours(this.grid[i][j])==3) {
+						newBoard.grid[i][j].isAlive = true;
+					}
+				}else {
+					if(this.getAliveNeighbours(this.grid[i][j])==3){
+						newBoard.grid[i][j].isAlive = true;
+					}
+				}
+			}
+		}
+		this.grid = newBoard.grid;
+	}
+	
 	public String toString() {
 		String res = "";
 		for(int i=0; i<this.rows; i++){
