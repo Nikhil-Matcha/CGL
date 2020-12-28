@@ -43,8 +43,8 @@ public class Board {
         }
 	}
 	
-	public void nextGeneration() {
-		Board newBoard = new Board(this.rows, this.columns);
+	public void nextGeneration(Board newBoard) {
+		// Board newBoard = new Board(this.rows, this.columns);
 		for(int i=0; i<this.rows; i++) {
 			for(int j=0; j<this.columns; j++) {
 				if(this.grid[i][j].isAlive) {
@@ -58,7 +58,7 @@ public class Board {
 				}
 			}
 		}
-		this.grid = newBoard.grid;
+		// this.grid = newBoard.grid;
 	}
 	
 	public String toString() {
