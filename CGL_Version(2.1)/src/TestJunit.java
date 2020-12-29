@@ -58,7 +58,7 @@ public class TestJunit {
 		Board b1 = new Board(4,4);
 		int l[][] = { {1,2}, {0,2}, {2,1}, {2,3}, {3,2} };
 		b1.createBoard(l);
-		b1.nextGeneration();
+		b1.nextGeneration(b1);
 		Assertions.assertEquals("....\n.***\n.*.*\n..*.\n", b1.toString());
 		
 	}

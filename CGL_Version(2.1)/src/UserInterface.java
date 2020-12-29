@@ -25,6 +25,7 @@ import javafx.scene.canvas.*;
  * <p> Copyright: Lynn Robert Carter © 2018-05-06 </p>
  * 
  * @author Lynn Robert Carter
+ * @author Nikhil Matcha
  * 
  * @version 2.03	2018-05-07 An implementation baseline for JavaFX graphics
  * 
@@ -287,6 +288,7 @@ public class UserInterface {
 			}
 			oddGameBoard.createBoard(l);
 			draw();
+			//window.getChildren().add(evenCanvas);
 
 			//oddCanvas
 
@@ -320,7 +322,7 @@ public class UserInterface {
 	 */
 	private void stopConway() {
 		// Your code goes here to display the current state of the board.
-		draw();
+		//draw();
 		System.out.println("Game is stopping....");
 		System.exit(0);
 	}
@@ -335,9 +337,15 @@ public class UserInterface {
 		
 		if(toggle){
 			oddGameBoard.nextGeneration(evenGameBoard);
+//			draw();
+			//window.getChildren().remove(evenCanvas);
+			//window.getChildren().add(oddCanvas);
 			toggle = false;
 		}else{
 			evenGameBoard.nextGeneration(oddGameBoard);
+			//draw();
+			//window.getChildren().remove(oddCanvas);
+			//window.getChildren().add(evenCanvas);
 			toggle = true;
 		}
 		draw();
@@ -420,38 +428,72 @@ public class UserInterface {
 		return true;							// End of file found 
 	}
 
-	private void draw(){
+//	private void draw(){
+//		Board board;
+//		if(toggle){
+//			board = oddGameBoard;
+//		}else{
+//			board = evenGameBoard;
+//		}
+//		
+//		if(this.count > 200) {
+//			System.out.println(board);
+//			System.out.println();
+//		}
+//		Canvas c = new Canvas(this.windowSizeWidth,this.windowSizeHeight);
+//		GraphicsContext graphics = c.getGraphicsContext2D();
+//		
+//		graphics.setFill(Color.LAVENDER);
+//        graphics.fillRect(0, 0, this.windowSizeWidth, this.windowSizeHeight);
+//        
+//		for (int i = 0; i < board.rows; i++) {
+//            for (int j = 0; j < board.columns; j++) {
+//            	
+//                if (board.grid[i][j].isAlive == true) {
+//                    // first rect will end up becoming the border
+//                    graphics.setFill(Color.gray(0.5, 0.5));
+//                    graphics.fillRect(i * this.cellSize, j * this.cellSize, this.cellSize, this.cellSize);
+//                    graphics.setFill(Color.PURPLE);
+//                    graphics.fillRect((i * this.cellSize) + 1, (j * this.cellSize) + 1, this.cellSize - 1, this.cellSize - 1);
+//                }else {
+//                    graphics.setFill(Color.gray(0.5, 0.5));
+//                    graphics.fillRect(i * this.cellSize, j * this.cellSize, this.cellSize, this.cellSize);
+//                    graphics.setFill(Color.LAVENDER);
+//                    graphics.fillRect((i * this.cellSize) + 1, (j * this.cellSize) + 1, this.cellSize - 1, this.cellSize - 1);
+//                }
+//            }
+//        }
+//		
+//		window.getChildren().add(c);
+//	}
+	
+	/*
+	 * The draw function adds rectangles to the window for those cells which are alive.
+	 * This function is called everytime load button is pressed and also everytime the
+	 * next generation is generated.
+	 */
+	
+	public void draw() {
 		Board board;
 		if(toggle){
 			board = oddGameBoard;
 		}else{
 			board = evenGameBoard;
 		}
-		Canvas c = new Canvas(this.windowSizeWidth,this.windowSizeHeight);
-		GraphicsContext graphics = c.getGraphicsContext2D();
-		
-		graphics.setFill(Color.LAVENDER);
-        graphics.fillRect(0, 0, this.windowSizeWidth, this.windowSizeHeight);
-        
-		for (int i = 0; i < board.rows; i++) {
-            for (int j = 0; j < board.columns; j++) {
-            	
-                if (board.grid[i][j].isAlive == true) {
-                    // first rect will end up becoming the border
-                    graphics.setFill(Color.gray(0.5, 0.5));
-                    graphics.fillRect(i * this.cellSize, j * this.cellSize, this.cellSize, this.cellSize);
-                    graphics.setFill(Color.PURPLE);
-                    graphics.fillRect((i * this.cellSize) + 1, (j * this.cellSize) + 1, this.cellSize - 3, this.cellSize - 3);
-                }else {
-                    graphics.setFill(Color.gray(0.5, 0.5));
-                    graphics.fillRect(i * this.cellSize, j * this.cellSize, this.cellSize, this.cellSize);
-                    graphics.setFill(Color.LAVENDER);
-                    graphics.fillRect((i * this.cellSize) + 1, (j * this.cellSize) + 1, this.cellSize - 3, this.cellSize - 3);
-                }
-            }
-        }
-		
-		window.getChildren().add(c);
+		for(int i=0; i<board.rows; i++) {
+			for(int j=0; j<board.columns; j++) {
+				if(board.grid[i][j].isAlive) {
+					Rectangle rectangle = new Rectangle(5,5,Color.GREEN);
+					rectangle.relocate(6*i,6*j);
+					window.getChildren().add(rectangle);
+				}
+//				else {
+//					Rectangle rectangle = new Rectangle(5,5,Color.YELLOW);
+//					rectangle.relocate(6*i,6*j);
+//					window.getChildren().add(rectangle);
+//				}
+			}
+		}
 	}
 	
 	

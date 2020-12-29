@@ -5,7 +5,7 @@ public class Game {
 		int[][] l = {{0,2},{1,2},{0,0},{2,3}};
 		while(true) {
 			System.out.println(b);
-			b.nextGeneration();
+			b.nextGeneration(b);
 		}
 	}
 }
