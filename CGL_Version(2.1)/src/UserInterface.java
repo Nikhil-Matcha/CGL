@@ -312,7 +312,7 @@ public class UserInterface {
 		
 		// Start the simulation by means of an animation Timeline using a keyframe duration of 
 		// 50 milliseconds
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), ae -> runSimulation()));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), ae -> runSimulation()));
 		timeline.setCycleCount(Animation.INDEFINITE);	// The animation runs until it is stopped
 		timeline.play();								// Start the animation
 	};
@@ -487,11 +487,11 @@ public class UserInterface {
 					rectangle.relocate(6*i,6*j);
 					window.getChildren().add(rectangle);
 				}
-//				else {
-//					Rectangle rectangle = new Rectangle(5,5,Color.YELLOW);
-//					rectangle.relocate(6*i,6*j);
-//					window.getChildren().add(rectangle);
-//				}
+				else {
+					Rectangle rectangle = new Rectangle(5,5,Color.WHITE);
+					rectangle.relocate(6*i,6*j);
+					window.getChildren().add(rectangle);
+				}
 			}
 		}
 	}

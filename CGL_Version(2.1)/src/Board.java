@@ -50,10 +50,15 @@ public class Board {
 				if(this.grid[i][j].isAlive) {
 					if(this.getAliveNeighbours(this.grid[i][j])==2 || this.getAliveNeighbours(this.grid[i][j])==3) {
 						newBoard.grid[i][j].isAlive = true;
+					}else {
+						newBoard.grid[i][j].isAlive = false;
 					}
 				}else {
 					if(this.getAliveNeighbours(this.grid[i][j])==3){
 						newBoard.grid[i][j].isAlive = true;
+					}
+					else {
+						newBoard.grid[i][j].isAlive = false;
 					}
 				}
 			}
